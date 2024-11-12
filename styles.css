@@ -69,6 +69,11 @@ p {
     transform: scale(1.1);
 }
 
+#first-header {
+    background-color: #fff; 
+
+}
+
 
 #second-header {
     text-align: center; /* Centra el texto dentro del header */
@@ -102,10 +107,6 @@ p {
     margin: 0 auto;
 }
 
-hr {
-    border: 0.3px solid #fff;  /* Color de la línea */
-    margin: 20px 0;           /* Espaciado arriba y abajo */
-}
 
 .header-section {
     text-align: center;
@@ -117,7 +118,7 @@ hr {
 .name {
     margin-top: 30px;
     font-size: 1.2rem;
-    color: #fff;
+    color: #000;
     margin-left: 20px;
     align-items: center;
     text-align: center; /* Asegura que el nombre se centre en el espacio disponible */
@@ -143,4 +144,3 @@ hr {
 .social-icon:hover {
     transform: scale(1.2);
 }
-
