@@ -1,0 +1,154 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden; /* Evita el scroll cuando los botones estén fuera de la vista */
+}
+
+body {
+    background-color: #000;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;  /* Aumento el margen superior para separar los botones del header */
+    z-index: 1;  /* Asegura que los botones se ubiquen encima de otros elementos */
+}
+
+
+.button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    border: 0.01px solid #fff;
+    background-color: #000;
+    border-radius: 5px;
+    text-decoration: none;
+    position: absolute; /* Posición absoluta para que los botones puedan moverse libremente */
+    opacity: 0;
+    transform: translateY(-50px); /* Comienza arriba de la pantalla */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.button.active {
+    opacity: 1; /* Hace visible el botón */
+    transform: translateY(0); /* Deja que el botón "caiga" */
+}
+
+.button:hover {
+    background-color: #2e2e2e;
+    transform: scale(1.1);
+}
+
+#first-header {
+    background-color: #fff; /* Cambia el fondo a blanco */
+    color: #000; /* Cambia el color del texto a negro para asegurar que sea legible */
+}
+
+#name {
+    color: #000
+}
+
+#second-header {
+    text-align: center; /* Centra el texto dentro del header */
+    margin-top: 20px;   /* Margen superior para separar del primer header */
+    padding: 20px 0;    /* Padding superior e inferior */
+    background-color: #000; 
+    margin-bottom: 20px; /* Espaciado debajo del segundo header */
+}
+
+/* Estilo para el título */
+#second-header h1 {
+    font-size: 2rem;      /* Tamaño del texto */
+    color: #fff;          /* Color del texto */
+    margin-bottom: 10px;  /* Espaciado debajo del título */
+}
+
+/* Estilo para el párrafo */
+#second-header p {
+    font-size: 1rem;      /* Tamaño del texto */
+    color: #fff;          /* Color del texto */
+    margin-bottom: 20px;  /* Espaciado debajo del párrafo */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+hr {
+    border: 0.3px solid #fff;  /* Color de la línea */
+    margin: 0px 0;           /* Espaciado arriba y abajo */
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 40px; /* Espacio para el título y la descripción */
+    position: relative;
+    z-index: 10;
+}
+
+.name {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-left: 20px;
+    align-items: center;
+    text-align: center; /* Asegura que el nombre se centre en el espacio disponible */
+    
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Alinea los íconos verticalmente */
+    
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    border: 0.1px solid #fff;
+    border-radius: 50%;
+    padding: 2px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+
