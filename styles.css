@@ -2,8 +2,8 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
     font-family: 'Montserrat', sans-serif;
-    overflow: hidden; /* Evita el scroll cuando los botones estén fuera de la vista */
 }
 
 body {
@@ -19,7 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    position: relative;
     background: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
@@ -39,13 +38,11 @@ p {
 .links {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 40px;  /* Aumento el margen superior para separar los botones del header */
-    z-index: 1;  /* Asegura que los botones se ubiquen encima de otros elementos */
+    gap: 15px;
 }
 
-
 .button {
+    display: inline-block;
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
@@ -53,15 +50,8 @@ p {
     background-color: #000;
     border-radius: 5px;
     text-decoration: none;
-    position: absolute; /* Posición absoluta para que los botones puedan moverse libremente */
-    opacity: 0;
-    transform: translateY(-50px); /* Comienza arriba de la pantalla */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.button.active {
-    opacity: 1; /* Hace visible el botón */
-    transform: translateY(0); /* Deja que el botón "caiga" */
+    position: relative; /* Necesario para mover los botones con top/left */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button:hover {
@@ -69,35 +59,18 @@ p {
     transform: scale(1.1);
 }
 
-#first-header {
-    background-color: #fff; 
-
+header {
+    display: flex;
+    justify-content: center; /* Centra todo el contenido */
+    align-items: center;
+    padding: 1px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    border-bottom: 0.1px solid #fff; /* Línea horizontal para separar el header del contenido */
 }
-
-
-#second-header {
-    text-align: center; /* Centra el texto dentro del header */
-    margin-top: 20px;   /* Margen superior para separar del primer header */
-    padding: 20px 0;    /* Padding superior e inferior */
-    background-color: #000; 
-    margin-bottom: 20px; /* Espaciado debajo del segundo header */
-}
-
-/* Estilo para el título */
-#second-header h1 {
-    font-size: 2rem;      /* Tamaño del texto */
-    color: #fff;          /* Color del texto */
-    margin-bottom: 10px;  /* Espaciado debajo del título */
-}
-
-/* Estilo para el párrafo */
-#second-header p {
-    font-size: 1rem;      /* Tamaño del texto */
-    color: #fff;          /* Color del texto */
-    margin-bottom: 20px;  /* Espaciado debajo del párrafo */
-}
-
-
 
 .header-content {
     display: flex;
@@ -105,14 +78,6 @@ p {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-
-.header-section {
-    text-align: center;
-    margin-bottom: 40px; /* Espacio para el título y la descripción */
-    position: relative;
-    z-index: 10;
 }
 
 .name {
