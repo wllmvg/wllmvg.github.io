@@ -9,5 +9,11 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function(){
+        var p = window.location.search.match(/p=([^&]*)/);
+        if(p) window.history.replaceState(null,null,'/'+p[1]);
+      })();
+    </script>
   </body>
 </html>
