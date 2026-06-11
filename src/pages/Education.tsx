@@ -128,7 +128,7 @@ export default function Education() {
               "
             >
               <img
-                src="../../assets/udes_bg.jpg"
+                src="./images/udes_bg.jpg"
                 alt="Universidad de Santander"
                 className="
                   w-full h-full object-cover
