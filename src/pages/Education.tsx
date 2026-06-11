@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import {
   GraduationCap,
   Calendar,
@@ -7,7 +9,36 @@ import {
   FileText,
 } from "lucide-react";
 
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+  },
+};
 
+const cardTransition: any = {
+  duration: 0.8,
+  ease: [0.22, 1, 0.36, 1] as any,
+};
+
+const relevantAreas = [
+  "Software Engineering",
+  "Web Development",
+  "Databases",
+  "Software Architecture",
+  "Requirements Analysis",
+  "Project Management",
+  "Algorithms",
+  "Object-Oriented Programming",
+];
 
 export default function Education() {
   return (
@@ -16,8 +47,12 @@ export default function Education() {
 
         {/* HEADER */}
 
-        <div className="mb-12 text-center">
-
+        <motion.div
+          className="mb-12 text-center"
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as any }}
+        >
           <span
             className="
               rounded-full
@@ -56,12 +91,16 @@ export default function Education() {
             software development, systems design and
             modern web technologies.
           </p>
-
-        </div>
+        </motion.div>
 
         {/* EDUCATION CARD */}
 
-        <div
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          transition={cardTransition}
           className="
             overflow-hidden
             rounded-3xl
@@ -70,42 +109,56 @@ export default function Education() {
             bg-zinc-900/80
           "
         >
-
           <div className="grid lg:grid-cols-[380px,1fr]">
 
             {/* UNIVERSITY IMAGE */}
-            <div
-            className="
+
+            <motion.div
+              initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as any, delay: 0.15 }}
+              className="
                 relative
                 h-56
                 md:h-72
                 overflow-hidden
                 rounded-3xl
                 border border-white/10
-            "
+              "
             >
-            <img
+              <img
                 src="../../assets/udes_bg.jpg"
                 alt="Universidad de Santander"
-                className="w-full h-full object-cover"
-            />
+                className="
+                  w-full h-full object-cover
+                  transition-transform duration-700
+                  hover:scale-105
+                "
+              />
 
-            <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-0 bg-black/40" />
 
-            <div className="absolute bottom-6 left-6">
+              <div className="absolute bottom-6 left-6">
                 <h2 className="text-3xl font-bold">
-                Universidad de Santander
+                  Universidad de Santander
                 </h2>
 
                 <p className="text-zinc-300">
-                Software Engineering
+                  Software Engineering
                 </p>
-            </div>
-            </div>
+              </div>
+            </motion.div>
 
             {/* CONTENT */}
 
-            <div className="p-8 md:p-10">
+            <motion.div
+              className="p-8 md:p-10 space-y-6"
+              initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as any, delay: 0.25 }}
+            >
 
               <div
                 className="
@@ -142,29 +195,34 @@ export default function Education() {
 
               </div>
 
-              <div className="mt-8 flex items-center gap-3">
+              {/* GPA */}
 
+              <motion.div
+                className="mt-8 flex items-center gap-3"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as any, delay: 0.4 }}
+              >
                 <Award className="text-zinc-300" />
-
                 <div>
-                  <h3 className="font-semibold">
-                    GPA
-                  </h3>
-
-                  <p className="text-zinc-400">
-                    4.07 / 5.00
-                  </p>
+                  <h3 className="font-semibold">GPA</h3>
+                  <p className="text-zinc-400">4.07 / 5.00</p>
                 </div>
+              </motion.div>
 
-              </div>
+              {/* OVERVIEW */}
 
-              <div className="mt-6">
-
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as any, delay: 0.5 }}
+              >
                 <div className="mb-4 flex items-center gap-3">
                   <BookOpen />
-                  <h3 className="text-xl font-semibold">
-                    Overview
-                  </h3>
+                  <h3 className="text-xl font-semibold">Overview</h3>
                 </div>
 
                 <p className="leading-relaxed text-zinc-300">
@@ -177,32 +235,34 @@ export default function Education() {
                   management while actively participating
                   in academic and real-world projects.
                 </p>
+              </motion.div>
 
-              </div>
+              {/* RELEVANT AREAS */}
 
-              <div className="mt-6">
-
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as any, delay: 0.6 }}
+              >
                 <div className="mb-4 flex items-center gap-3">
                   <FileText />
-                  <h3 className="text-xl font-semibold">
-                    Relevant Areas
-                  </h3>
+                  <h3 className="text-xl font-semibold">Relevant Areas</h3>
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-
-                  {[
-                    "Software Engineering",
-                    "Web Development",
-                    "Databases",
-                    "Software Architecture",
-                    "Requirements Analysis",
-                    "Project Management",
-                    "Algorithms",
-                    "Object-Oriented Programming",
-                  ].map((item) => (
-                    <span
+                  {relevantAreas.map((item, index) => (
+                    <motion.span
                       key={item}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        ease: [0.22, 1, 0.36, 1] as any,
+                        delay: 0.65 + index * 0.06,
+                      }}
                       className="
                         rounded-full
                         border
@@ -212,21 +272,22 @@ export default function Education() {
                         py-2
                         text-sm
                         text-zinc-300
+                        transition-all
+                        duration-300
+                        hover:-translate-y-1
+                        hover:border-cyan-500/50
+                        hover:bg-white/[0.08]
                       "
                     >
                       {item}
-                    </span>
+                    </motion.span>
                   ))}
-
                 </div>
+              </motion.div>
 
-              </div>
-
-            </div>
-
+            </motion.div>
           </div>
-
-        </div>
+        </motion.div>
 
       </div>
     </div>

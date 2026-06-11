@@ -17,7 +17,6 @@ const skills = [
       "TypeScript",
       "JavaScript",
       "Tailwind CSS",
-      "Responsive Design",
     ],
   },
   {
@@ -61,7 +60,7 @@ export default function Skills() {
 
         {/* HEADER */}
 
-        <div className="mb-20 text-center">
+        <div className="mb-14 text-center">
 
           <span
             className="
@@ -79,9 +78,9 @@ export default function Skills() {
           <h1
             className="
               mt-8
-              text-4xl
-              sm:text-5xl
-              md:text-6xl
+              text-3xl
+              sm:text-4xl
+              md:text-4xl
               font-black
             "
           >
@@ -113,31 +112,39 @@ export default function Skills() {
               key={skill.title}
               initial={{
                 opacity: 0,
-                y: 50,
+                y: 40,
+                scale: 0.95,
+                filter: "blur(8px)",
               }}
               whileInView={{
                 opacity: 1,
                 y: 0,
+                scale: 1,
+                filter: "blur(0px)",
               }}
               viewport={{
                 once: true,
+                amount: 0.2,
               }}
               transition={{
-                duration: 0.6,
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
               }}
               className="
-                group
-                rounded-3xl
-                border
-                border-white/10
-                bg-white/5
-                p-8
-                backdrop-blur
-                transition-all
-                duration-500
-                hover:border-cyan-500/30
-                hover:-translate-y-1
-              "
+              group
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              p-6 md:p-7
+              backdrop-blur
+              transition-all
+              duration-500
+              hover:border-cyan-500/30
+              hover:-translate-y-2
+              hover:scale-[1.02]
+              hover:shadow-[0_0_40px_rgba(6,182,212,0.08)]
+            "
             >
 
               {/* TOP */}
@@ -149,8 +156,8 @@ export default function Skills() {
                   <div
                     className="
                       flex
-                      h-14
-                      w-14
+                      h-12
+                      w-12
                       items-center
                       justify-center
                       rounded-2xl
@@ -179,7 +186,7 @@ export default function Skills() {
                 <div className="text-right">
                   <div
                     className="
-                      text-4xl
+                      text-3xl md:text-4xl
                       font-black
                       bg-gradient-to-r
                       from-cyan-400
@@ -316,69 +323,111 @@ export default function Skills() {
 
         <div
           className="
-            mt-20
+            mt-14
             grid
             gap-6
             md:grid-cols-3
           "
         >
 
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
             className="
               rounded-3xl
               border
               border-white/10
               bg-white/5
-              p-8
+              p-6
               text-center
             "
           >
-            <h2 className="text-5xl font-black">
+            <h2 className="text-4xl font-black">
               10+
             </h2>
 
             <p className="mt-2 text-zinc-400">
               Technologies
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
             className="
               rounded-3xl
               border
               border-white/10
               bg-white/5
-              p-8
+              p-6
               text-center
             "
           >
-            <h2 className="text-5xl font-black">
+            <h2 className="text-4xl font-black">
               Full Stack
             </h2>
 
             <p className="mt-2 text-zinc-400">
               Development Focus
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
             className="
               rounded-3xl
               border
               border-white/10
               bg-white/5
-              p-8
+              p-6
               text-center
             "
           >
-            <h2 className="text-5xl font-black">
+            <h2 className="text-4xl font-black">
               4+
             </h2>
 
             <p className="mt-2 text-zinc-400">
               Years Learning
             </p>
-          </div>
+          </motion.div>
 
         </div>
 

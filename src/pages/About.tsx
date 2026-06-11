@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import profilePhoto from "../../assets/foto_perfil_william.png";
 
@@ -72,6 +73,31 @@ const quickFacts = [
   },
 ];
 
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+  },
+};
+
+const cardTransition: any = {
+  duration: 0.8,
+  ease: [0.22, 1, 0.36, 1] as any,
+};
+
+const simpleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function About() {
   return (
     <div className="min-h-screen bg-black pt-32 pb-24 px-6">
@@ -79,7 +105,12 @@ export default function About() {
 
         {/* HEADER */}
 
-        <div className="mb-20 text-center">
+        <motion.div
+          className="mb-20 text-center"
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
           <span
             className="
               rounded-full
@@ -88,7 +119,7 @@ export default function About() {
               px-4 py-2
               text-sm
               text-zinc-300
-                "
+            "
           >
             About Me
           </span>
@@ -106,7 +137,7 @@ export default function About() {
             <br />
             purpose and impact.
           </h1>
-        </div>
+        </motion.div>
 
         {/* PROFILE */}
 
@@ -114,7 +145,11 @@ export default function About() {
 
           {/* PHOTO */}
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          >
             <div
               className="
                 aspect-square
@@ -138,11 +173,16 @@ export default function About() {
                 "
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* CONTENT */}
 
-          <div className="space-y-8">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+          >
 
             <div className="space-y-5 text-zinc-300 leading-relaxed">
 
@@ -195,9 +235,16 @@ export default function About() {
 
               <div className="space-y-4">
 
-                {quickFacts.map((fact) => (
-                  <div
+                {quickFacts.map((fact, index) => (
+                  <motion.div
                     key={fact.text}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: 0.4 + index * 0.08,
+                    }}
                     className="
                       flex
                       items-center
@@ -207,7 +254,7 @@ export default function About() {
                   >
                     {fact.icon}
                     <span>{fact.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
 
               </div>
@@ -215,7 +262,13 @@ export default function About() {
 
             {/* BUTTONS */}
 
-            <div className="flex flex-wrap gap-4">
+
+            <motion.div
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.7 }}
+            >
 
               <a
                 href="/cv/cv_william_vega.pdf"
@@ -252,32 +305,50 @@ export default function About() {
                 My Skills
               </Link>
 
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
         </div>
 
         {/* ACHIEVEMENTS */}
 
         <section className="mt-24">
-          <h2 className="mb-10 text-3xl font-bold">
+          <motion.h2
+            className="mb-10 text-3xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as any }}
+          >
             Highlights
-          </h2>
+          </motion.h2>
 
           <div className="grid gap-6 md:grid-cols-3">
 
             {achievements.map((item) => (
-              <div
+              <motion.div
                 key={item.title}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={cardTransition}
                 className="
+                  group
                   rounded-2xl
                   border
                   border-white/10
                   bg-zinc-900/80
                   p-6
+                  transition-all
+                  duration-500
+                  hover:border-cyan-500/30
+                  hover:-translate-y-2
+                  hover:scale-[1.02]
+                  hover:shadow-[0_0_40px_rgba(6,182,212,0.08)]
                 "
               >
-                <div className="mb-4">
+                <div className="mb-4 text-cyan-300">
                   {item.icon}
                 </div>
 
@@ -288,7 +359,7 @@ export default function About() {
                 <p className="text-zinc-400">
                   {item.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
 
           </div>
@@ -298,15 +369,26 @@ export default function About() {
 
         <section className="mt-24">
 
-          <h2 className="mb-10 text-3xl font-bold">
+          <motion.h2
+            className="mb-10 text-3xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             Focus Areas
-          </h2>
+          </motion.h2>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
             {interests.map((interest) => (
-              <div
+              <motion.div
                 key={interest}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={cardTransition}
                 className="
                   flex
                   items-center
@@ -316,21 +398,24 @@ export default function About() {
                   border-white/10
                   bg-zinc-900/80
                   p-4
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:border-cyan-500/50
+                  hover:bg-white/[0.08]
                 "
               >
-                <Globe size={18} />
+                <Globe size={18} className="text-cyan-300 shrink-0" />
 
                 <span className="text-zinc-300">
                   {interest}
                 </span>
-              </div>
+              </motion.div>
             ))}
 
           </div>
 
         </section>
-
-        {/* CTA */}
 
       </div>
     </div>

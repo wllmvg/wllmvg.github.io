@@ -5,7 +5,7 @@ import {
   Calendar,
 } from "lucide-react";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 import movilcomImg from "../../assets/movilcom_bg.jpg";
 import litoarteImg from "../../assets/litoarte_bg.jpg";
@@ -31,18 +31,24 @@ const experiences = [
   },
 ];
 
-const fadeUp: Variants = {
+const cardVariants = {
   hidden: {
     opacity: 0,
     y: 40,
+    scale: 0.95,
+    filter: "blur(8px)",
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-    },
+    scale: 1,
+    filter: "blur(0px)",
   },
+};
+
+const cardTransition: any = {
+  duration: 0.8,
+  ease: [0.22, 1, 0.36, 1] as any,
 };
 
 export default function Experience() {
@@ -54,10 +60,9 @@ export default function Experience() {
 
         <motion.div
           className="mb-20 text-center"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as any }}
         >
           <span
             className="
@@ -106,15 +111,16 @@ export default function Experience() {
           {experiences.map((experience, index) => (
             <motion.div
               key={experience.company}
-              variants={fadeUp}
+              variants={cardVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
-                duration: 0.7,
+                ...cardTransition,
                 delay: index * 0.15,
               }}
               className="
+                group
                 overflow-hidden
                 rounded-3xl
                 border
@@ -122,9 +128,11 @@ export default function Experience() {
                 bg-white/5
                 backdrop-blur
                 transition-all
-                duration-300
-                hover:border-white/20
-                hover:bg-white/[0.07]
+                duration-500
+                hover:border-cyan-500/30
+                hover:-translate-y-2
+                hover:scale-[1.02]
+                hover:shadow-[0_0_40px_rgba(6,182,212,0.08)]
               "
             >
 
@@ -139,8 +147,8 @@ export default function Experience() {
                     w-full
                     object-cover
                     transition-transform
-                    duration-500
-                    hover:scale-105
+                    duration-700
+                    group-hover:scale-105
                   "
                 />
 
@@ -152,7 +160,9 @@ export default function Experience() {
               <div className="p-8">
 
                 <div className="flex items-center gap-3 mb-4">
-                  {experience.icon}
+                  <span className="text-cyan-300">
+                    {experience.icon}
+                  </span>
 
                   <h2 className="text-2xl font-bold">
                     {experience.company}
@@ -202,10 +212,11 @@ export default function Experience() {
 
         <motion.section
           className="mt-24"
-          variants={fadeUp}
+          variants={cardVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={cardTransition}
         >
           <div
             className="
@@ -215,22 +226,36 @@ export default function Experience() {
               bg-white/5
               p-10
               backdrop-blur
+              transition-all
+              duration-500
+              hover:border-cyan-500/30
+              hover:shadow-[0_0_40px_rgba(6,182,212,0.08)]
             "
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Briefcase size={24} />
+            <motion.div
+              className="flex items-center gap-3 mb-4"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as any, delay: 0.2 }}
+            >
+              <Briefcase size={24} className="text-cyan-300" />
 
               <h2 className="text-2xl font-bold">
                 Looking Forward
               </h2>
-            </div>
+            </motion.div>
 
-            <p
+            <motion.p
               className="
                 max-w-4xl
                 leading-relaxed
                 text-zinc-400
               "
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as any, delay: 0.35 }}
             >
               My background in technical support and digital
               design strengthened my ability to solve problems,
@@ -239,7 +264,7 @@ export default function Experience() {
               actively seeking opportunities where I can build
               impactful products using React, TypeScript,
               Node.js and modern web technologies.
-            </p>
+            </motion.p>
           </div>
         </motion.section>
 
