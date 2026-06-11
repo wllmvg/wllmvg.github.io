@@ -1010,7 +1010,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
                 overflow-hidden\r
                 rounded-3xl\r
                 border border-white/10\r
-              `,children:[(0,k.jsx)(`img`,{src:`../../assets/udes_bg.jpg`,alt:`Universidad de Santander`,className:`\r
+              `,children:[(0,k.jsx)(`img`,{src:`./images/udes_bg.jpg`,alt:`Universidad de Santander`,className:`\r
                   w-full h-full object-cover\r
                   transition-transform duration-700\r
                   hover:scale-105\r
