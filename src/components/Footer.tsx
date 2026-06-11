@@ -14,7 +14,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black">
+    <footer className="relative z-10 border-t border-white/10 bg-black">
       <div className="mx-auto max-w-7xl px-10 md:px-16 lg:px-20 py-20">
 
         <div className="grid gap-12 md:grid-cols-4">
@@ -183,7 +183,6 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 border-t border-white/10 pt-8">
-
           <div
             className="
               flex
@@ -196,18 +195,9 @@ export default function Footer() {
               md:flex-row
             "
           >
-
-            <p>
-              © 2026 William Felipe Melgarejo Vega.
-              All rights reserved.
-            </p>
-
-            <p>
-              Built with React, TypeScript & Tailwind CSS
-            </p>
-
+            <p>© 2026 William Felipe Melgarejo Vega. All rights reserved.</p>
+            <p>Open to full-time roles & freelance projects</p>
           </div>
-
         </div>
 
       </div>

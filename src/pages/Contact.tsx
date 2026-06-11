@@ -4,12 +4,72 @@ import {
   Send,
   ArrowUpRight,
 } from "lucide-react";
-
+ 
 import {
   FaGithub,
   FaLinkedin,
 } from "react-icons/fa";
 
+import profilePhoto from "../../assets/foto_perfil_william.png";
+ 
+import { motion } from "framer-motion";
+ 
+const cubicBezierEase: any = [0.22, 1, 0.36, 1];
+ 
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: cubicBezierEase },
+  },
+};
+ 
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.97,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: cubicBezierEase },
+  },
+};
+ 
+const listContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+ 
+const listItemVariants = {
+  hidden: { opacity: 0, x: 24 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: cubicBezierEase },
+  },
+};
+ 
+const statsContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+ 
 export default function Contact() {
   const contacts = [
     {
@@ -37,17 +97,30 @@ export default function Contact() {
       link: "#",
     },
   ];
-
+ 
+  const stats = [
+    { value: "10+", label: "Technologies" },
+    { value: "Full Stack", label: "Development Focus" },
+    { value: "Open", label: "To Opportunities" },
+  ];
+ 
   return (
     <div className="min-h-screen bg-black pt-28 pb-20 px-6 md:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl">
-
+ 
         {/* HEADER */}
-
-        <div className="mb-16 text-center">
-
-          <span
+ 
+        <motion.div
+          className="mb-16 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUpVariants}
+        >
+ 
+          <motion.span
             className="
+              inline-block
               rounded-full
               border border-white/10
               bg-white/5
@@ -55,10 +128,22 @@ export default function Contact() {
               text-sm
               text-zinc-300
             "
+            animate={{
+              boxShadow: [
+                "0 0 0px rgba(34,211,238,0)",
+                "0 0 18px rgba(34,211,238,0.3)",
+                "0 0 0px rgba(34,211,238,0)",
+              ],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
             Contact
-          </span>
-
+          </motion.span>
+ 
           <h1
             className="
               mt-6
@@ -70,7 +155,7 @@ export default function Contact() {
           >
             Let's Build Something Great
           </h1>
-
+ 
           <p
             className="
               mx-auto
@@ -85,12 +170,16 @@ export default function Contact() {
             Full Stack Developer. If you have a project,
             internship or role in mind, let's connect.
           </p>
-
-        </div>
-
+ 
+        </motion.div>
+ 
         {/* MAIN CARD */}
-
-        <div
+ 
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
           className="
             overflow-hidden
             rounded-[32px]
@@ -100,21 +189,25 @@ export default function Contact() {
             from-zinc-900
             via-slate-950
             to-zinc-900
+            transition-all
+            duration-500
+            hover:border-cyan-500/30
+            hover:shadow-[0_0_60px_-15px_rgba(34,211,238,0.35)]
           "
         >
-
+ 
           <div
             className="
               grid
               lg:grid-cols-2
             "
           >
-
+ 
             {/* LEFT */}
-
+ 
             <div className="p-8 md:p-10">
-
-              <div
+ 
+              <motion.div
                 className="
                   flex
                   h-24
@@ -124,17 +217,30 @@ export default function Contact() {
                   rounded-full
                   border
                   border-cyan-500/20
-                  bg-gradient-to-br
-                  from-cyan-500/20
-                  to-purple-500/20
-                  text-3xl
-                  font-black
+                  overflow-hidden
                 "
+                initial={{ opacity: 0, scale: 0.6, rotate: -25 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: cubicBezierEase, delay: 0.1 }}
+                whileHover={{
+                  scale: 1.08,
+                  rotate: 6,
+                  borderColor: "rgba(34,211,238,0.4)",
+                }}
               >
-                W
-              </div>
-
-              <h2
+                <img
+                  src={profilePhoto}
+                  alt="William Felipe Melgarejo Vega"
+                  className="h-full w-full object-cover"
+                />
+              </motion.div>
+ 
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: cubicBezierEase, delay: 0.2 }}
                 className="
                   mt-6
                   text-3xl
@@ -146,9 +252,13 @@ export default function Contact() {
                 William Felipe
                 <br />
                 Melgarejo Vega
-              </h2>
-
-              <p
+              </motion.h2>
+ 
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: cubicBezierEase, delay: 0.3 }}
                 className="
                   mt-5
                   max-w-lg
@@ -159,10 +269,16 @@ export default function Contact() {
                 Junior Software Developer focused on
                 React, TypeScript, Node.js and modern
                 web technologies.
-              </p>
-
-              <a
+              </motion.p>
+ 
+              <motion.a
                 href="mailto:work.wllmvg@gmail.com"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: cubicBezierEase, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
                 className="
                   mt-8
                   inline-flex
@@ -175,33 +291,38 @@ export default function Contact() {
                   text-sm
                   font-semibold
                   text-black
-                  transition
-                  hover:scale-105
                 "
               >
                 <Send size={18} />
                 Send Email
-              </a>
-
+              </motion.a>
+ 
             </div>
-
+ 
             {/* RIGHT */}
-
-            <div
+ 
+            <motion.div
               className="
                 grid
                 gap-3
                 p-8
                 md:p-10
               "
+              variants={listContainerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
-
+ 
               {contacts.map((item) => (
-                <a
+                <motion.a
                   key={item.title}
                   href={item.link}
                   target="_blank"
                   rel="noreferrer"
+                  variants={listItemVariants}
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  whileTap={{ scale: 0.98 }}
                   className="
                     group
                     flex
@@ -212,16 +333,16 @@ export default function Contact() {
                     border-white/10
                     bg-white/5
                     p-5
-                    transition-all
+                    transition-colors
                     duration-300
                     hover:border-cyan-500/30
                     hover:bg-white/[0.07]
                   "
                 >
-
+ 
                   <div className="flex items-center gap-4">
-
-                    <div
+ 
+                    <motion.div
                       className="
                         flex
                         h-12
@@ -231,12 +352,18 @@ export default function Contact() {
                         rounded-xl
                         bg-white/10
                       "
+                      whileHover={{
+                        scale: 1.1,
+                        rotate: 6,
+                        backgroundColor: "rgba(34,211,238,0.18)",
+                      }}
+                      transition={{ duration: 0.3, ease: cubicBezierEase }}
                     >
                       {item.icon}
-                    </div>
-
+                    </motion.div>
+ 
                     <div>
-
+ 
                       <p
                         className="
                           text-xs
@@ -247,7 +374,7 @@ export default function Contact() {
                       >
                         {item.title}
                       </p>
-
+ 
                       <h3
                         className="
                           mt-1
@@ -258,99 +385,76 @@ export default function Contact() {
                       >
                         {item.value}
                       </h3>
-
+ 
                     </div>
-
+ 
                   </div>
-
+ 
                   <ArrowUpRight
                     size={20}
                     className="
                       transition-transform
+                      duration-300
                       group-hover:translate-x-1
                       group-hover:-translate-y-1
+                      group-hover:text-cyan-400
                     "
                   />
-
-                </a>
+ 
+                </motion.a>
               ))}
-
-            </div>
-
+ 
+            </motion.div>
+ 
           </div>
-
-        </div>
-
+ 
+        </motion.div>
+ 
         {/* STATS */}
-
-        <div
+ 
+        <motion.div
           className="
             mt-10
             grid
             gap-4
             sm:grid-cols-3
           "
+          variants={statsContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
-
-          <div
-            className="
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              p-6
-              text-center
-            "
-          >
-            <h2 className="text-4xl font-black">
-              10+
-            </h2>
-
-            <p className="mt-2 text-sm text-zinc-400">
-              Technologies
-            </p>
-          </div>
-
-          <div
-            className="
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              p-6
-              text-center
-            "
-          >
-            <h2 className="text-4xl font-black">
-              Full Stack
-            </h2>
-
-            <p className="mt-2 text-sm text-zinc-400">
-              Development Focus
-            </p>
-          </div>
-
-          <div
-            className="
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              p-6
-              text-center
-            "
-          >
-            <h2 className="text-4xl font-black">
-              Open
-            </h2>
-
-            <p className="mt-2 text-sm text-zinc-400">
-              To Opportunities
-            </p>
-          </div>
-
-        </div>
-
+ 
+          {stats.map((stat) => (
+            <motion.div
+              key={stat.label}
+              variants={cardVariants}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                p-6
+                text-center
+                transition-colors
+                duration-300
+                hover:border-cyan-500/30
+                hover:bg-white/[0.07]
+              "
+            >
+              <h2 className="text-4xl font-black">
+                {stat.value}
+              </h2>
+ 
+              <p className="mt-2 text-sm text-zinc-400">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+ 
+        </motion.div>
+ 
       </div>
     </div>
   );
