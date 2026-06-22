@@ -29,7 +29,6 @@ const projects = [
     github: null,
     demo: null,
   },
- 
   {
     id: "",
     title: "TokenShift",
@@ -46,24 +45,39 @@ const projects = [
     github: "https://github.com/wllmvg/TokenShift",
     demo: "https://wllmvg.github.io/TokenShift/",
   },
- 
   {
     id: "",
     title: "Scheduly",
     description:
-      "Academic productivity application that converts university schedules into Google Calendar events automatically, helping students save time and stay organized throughout the semester.",
+      "Converts university PDF schedules into .ICS calendar files compatible with Google Calendar, Apple Calendar and Outlook. Each class becomes a weekly recurring event with automatic 30-minute reminders. Built with a Python/Flask backend and a React frontend, with no PDF storage on the server.",
     image: "/screenshots/scheduly.jpg",
     technologies: [
       "React",
       "TypeScript",
-      "Node.js",
-      "Google Calendar API",
-      "REST APIs",
+      "Python",
+      "Flask",
+      "Supabase",
+      "Tailwind CSS",
     ],
-    github: "https://github.com/wllmvg/Scheduly",
-    demo: "https://wllmvg.github.io/Scheduly/",
+    github: "https://github.com/wllmvg/scheduly",
+    demo: "https://scheduly-psi.vercel.app",
   },
- 
+  {
+    id: "",
+    title: "Rifally",
+    description:
+      "Web application for creating and managing raffles. Organizers can manage numbers via an interactive grid, add collaborators, share a public page with buyers, and pick winners using a built-in spinning wheel. Powered by Supabase with real-time RLS-based access control.",
+    image: "/screenshots/rifally.jpg",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Supabase",
+      "React Router",
+      "CSS",
+    ],
+    github: "https://github.com/wllmvg/rifally",
+    demo: "https://rifally-psi.vercel.app",
+  },
   {
     id: "",
     title: "Physics Calculator",
